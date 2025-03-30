@@ -21,8 +21,26 @@ namespace PersonData.DatabaseLayer
 
         public int CreatePerson(Person personToAdd)
         {
-            throw new NotImplementedException();
+            int insertedId = -1;
+
+            string insertString = @"
+        INSERT INTO Person(firstName, lastName, mobilePhone)
+        OUTPUT INSERTED.ID
+        VALUES(@FirstNam, @LastNam, @MobilePhon)";
+
+            using SqlConnection con = new(_connectionString);
+            using SqlCommand cmd = new(insertString, con);
+
+            cmd.Parameters.AddWithValue("@FirstNam", personToAdd.FirstName);
+            cmd.Parameters.AddWithValue("@LastNam", personToAdd.LastName);
+            cmd.Parameters.AddWithValue("@MobilePhon", personToAdd.MobilePhone ?? (object)DBNull.Value);
+
+            con.Open();
+            insertedId = (int)cmd.ExecuteScalar();
+
+            return insertedId;
         }
+
 
         public bool DeletePersonById(int id)
         {
@@ -47,10 +65,26 @@ namespace PersonData.DatabaseLayer
             return foundPersons;
         }
 
-        public Person GetPersonById(int id)
+        public Person GetPersonById(int findId)
         {
-            throw new NotImplementedException();
+            Person foundPerson = new();
+
+            string queryString = "SELECT id, firstName, lastName, mobilePhone FROM Person WHERE id = @Id";
+            using SqlConnection con = new(_connectionString);
+            using SqlCommand cmd = new(queryString, con);
+
+            cmd.Parameters.AddWithValue("@Id", findId);
+            con.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                foundPerson = GetPersonFromReader(reader);
+            }
+
+            return foundPerson;
         }
+
 
         public bool UpdatePerson(Person personToUpdate)
         {
