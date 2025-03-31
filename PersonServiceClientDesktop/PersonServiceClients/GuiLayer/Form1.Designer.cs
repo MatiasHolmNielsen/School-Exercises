@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            listBoxPersons = new ListBox();
-            buttonGetPersons = new Button();
             labelProcessText = new Label();
+            buttonGetPersons = new Button();
+            listBoxPersons = new ListBox();
             groupBox2 = new GroupBox();
-            textBoxFirstname = new TextBox();
-            textBoxLastname = new TextBox();
-            textBoxMobilePhone = new TextBox();
-            buttonSavePerson = new Button();
-            label1 = new Label();
-            label2 = new Label();
+            labelProcessSave = new Label();
             label3 = new Label();
-            label4 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            buttonSavePerson = new Button();
+            textBoxMobilePhone = new TextBox();
+            textBoxLastname = new TextBox();
+            textBoxFirstname = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -57,6 +57,24 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Persons";
             // 
+            // labelProcessText
+            // 
+            labelProcessText.AutoSize = true;
+            labelProcessText.Location = new Point(6, 181);
+            labelProcessText.Name = "labelProcessText";
+            labelProcessText.Size = new Size(0, 15);
+            labelProcessText.TabIndex = 2;
+            // 
+            // buttonGetPersons
+            // 
+            buttonGetPersons.Location = new Point(230, 177);
+            buttonGetPersons.Name = "buttonGetPersons";
+            buttonGetPersons.Size = new Size(81, 23);
+            buttonGetPersons.TabIndex = 1;
+            buttonGetPersons.Text = "Get Persons";
+            buttonGetPersons.UseVisualStyleBackColor = true;
+            buttonGetPersons.Click += buttonGetPersons_Click;
+            // 
             // listBoxPersons
             // 
             listBoxPersons.FormattingEnabled = true;
@@ -66,26 +84,9 @@
             listBoxPersons.Size = new Size(305, 139);
             listBoxPersons.TabIndex = 0;
             // 
-            // buttonGetPersons
-            // 
-            buttonGetPersons.Location = new Point(236, 177);
-            buttonGetPersons.Name = "buttonGetPersons";
-            buttonGetPersons.Size = new Size(75, 23);
-            buttonGetPersons.TabIndex = 1;
-            buttonGetPersons.Text = "Get Persons";
-            buttonGetPersons.UseVisualStyleBackColor = true;
-            // 
-            // labelProcessText
-            // 
-            labelProcessText.AutoSize = true;
-            labelProcessText.Location = new Point(6, 181);
-            labelProcessText.Name = "labelProcessText";
-            labelProcessText.Size = new Size(0, 15);
-            labelProcessText.TabIndex = 2;
-            // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(label4);
+            groupBox2.Controls.Add(labelProcessSave);
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(label2);
             groupBox2.Controls.Add(label1);
@@ -99,54 +100,15 @@
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Add New Person";
+           
             // 
-            // textBoxFirstname
+            // labelProcessSave
             // 
-            textBoxFirstname.Location = new Point(129, 44);
-            textBoxFirstname.Name = "textBoxFirstname";
-            textBoxFirstname.Size = new Size(100, 23);
-            textBoxFirstname.TabIndex = 0;
-            // 
-            // textBoxLastname
-            // 
-            textBoxLastname.Location = new Point(129, 101);
-            textBoxLastname.Name = "textBoxLastname";
-            textBoxLastname.Size = new Size(100, 23);
-            textBoxLastname.TabIndex = 1;
-            // 
-            // textBoxMobilePhone
-            // 
-            textBoxMobilePhone.Location = new Point(129, 155);
-            textBoxMobilePhone.Name = "textBoxMobilePhone";
-            textBoxMobilePhone.Size = new Size(100, 23);
-            textBoxMobilePhone.TabIndex = 2;
-            // 
-            // buttonSavePerson
-            // 
-            buttonSavePerson.Location = new Point(265, 177);
-            buttonSavePerson.Name = "buttonSavePerson";
-            buttonSavePerson.Size = new Size(75, 23);
-            buttonSavePerson.TabIndex = 3;
-            buttonSavePerson.Text = "Save Person";
-            buttonSavePerson.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(30, 49);
-            label1.Name = "label1";
-            label1.Size = new Size(64, 15);
-            label1.TabIndex = 4;
-            label1.Text = "First Name";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(30, 109);
-            label2.Name = "label2";
-            label2.Size = new Size(63, 15);
-            label2.TabIndex = 5;
-            label2.Text = "Last Name";
+            labelProcessSave.AutoSize = true;
+            labelProcessSave.Location = new Point(30, 185);
+            labelProcessSave.Name = "labelProcessSave";
+            labelProcessSave.Size = new Size(0, 15);
+            labelProcessSave.TabIndex = 7;
             // 
             // label3
             // 
@@ -157,13 +119,54 @@
             label3.TabIndex = 6;
             label3.Text = "Mobile Phone";
             // 
-            // label4
+            // label2
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(30, 185);
-            label4.Name = "label4";
-            label4.Size = new Size(0, 15);
-            label4.TabIndex = 7;
+            label2.AutoSize = true;
+            label2.Location = new Point(30, 109);
+            label2.Name = "label2";
+            label2.Size = new Size(63, 15);
+            label2.TabIndex = 5;
+            label2.Text = "Last Name";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(30, 49);
+            label1.Name = "label1";
+            label1.Size = new Size(64, 15);
+            label1.TabIndex = 4;
+            label1.Text = "First Name";
+            // 
+            // buttonSavePerson
+            // 
+            buttonSavePerson.Location = new Point(265, 177);
+            buttonSavePerson.Name = "buttonSavePerson";
+            buttonSavePerson.Size = new Size(75, 23);
+            buttonSavePerson.TabIndex = 3;
+            buttonSavePerson.Text = "Save Person";
+            buttonSavePerson.UseVisualStyleBackColor = true;
+            buttonSavePerson.Click += buttonSavePerson_Click;
+            // 
+            // textBoxMobilePhone
+            // 
+            textBoxMobilePhone.Location = new Point(129, 155);
+            textBoxMobilePhone.Name = "textBoxMobilePhone";
+            textBoxMobilePhone.Size = new Size(100, 23);
+            textBoxMobilePhone.TabIndex = 2;
+            // 
+            // textBoxLastname
+            // 
+            textBoxLastname.Location = new Point(129, 101);
+            textBoxLastname.Name = "textBoxLastname";
+            textBoxLastname.Size = new Size(100, 23);
+            textBoxLastname.TabIndex = 1;
+            // 
+            // textBoxFirstname
+            // 
+            textBoxFirstname.Location = new Point(129, 44);
+            textBoxFirstname.Name = "textBoxFirstname";
+            textBoxFirstname.Size = new Size(100, 23);
+            textBoxFirstname.TabIndex = 0;
             // 
             // Form1
             // 
@@ -196,6 +199,6 @@
         private TextBox textBoxFirstname;
         private Label label3;
         private Label label2;
-        private Label label4;
+        private Label labelProcessSave;
     }
 }
